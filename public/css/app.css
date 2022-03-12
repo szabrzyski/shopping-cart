@@ -1,0 +1,14 @@
+/* Style dla SM */
+@media (min-width: 576px) {}
+
+/* Style dla MD */
+@media (min-width: 768px) {}
+
+/* Style dla LG */
+@media (min-width: 992px) {}
+
+/* Style dla XL */
+@media (min-width: 1200px) {}
+
+/* Style dla XXL */
+@media (min-width: 1400px) {}
