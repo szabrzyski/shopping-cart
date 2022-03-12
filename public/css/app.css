@@ -1,19 +1,19 @@
-/* Style dla SM */
+/* Styles for SM */
 @media (min-width: 576px) {}
 
-/* Style dla MD */
+/* Styles for MD */
 @media (min-width: 768px) {}
 
-/* Style dla LG */
+/* Styles for LG */
 @media (min-width: 992px) {}
 
-/* Style dla XL */
+/* Styles for XL */
 @media (min-width: 1200px) {}
 
-/* Style dla XXL */
+/* Styles for XXL */
 @media (min-width: 1400px) {}
 
-/* Ogólne */
+/* Global */
 
 body {
     font-size: 1rem;
@@ -21,11 +21,11 @@ body {
     overflow: auto;
 }
 
-.niebieskie-tlo {
+.blue-background {
     background-color: #008bb9;
 }
 
-/* Górny pasek nawigacji */
+/* Navigation bar */
 
 .navbar {
     font-size: 1.2rem;

@@ -1,6 +1,6 @@
-{{-- Pasek paginacji --}}
+{{-- Pagination bar --}}
 <div class="row">
     <div class="col-12 d-flex justify-content-end">
-        {!! $wyniki->links() !!}
+        {!! $results->links() !!}
     </div>
 </div>

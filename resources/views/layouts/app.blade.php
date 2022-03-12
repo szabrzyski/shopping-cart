@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Tytuł strony -->
+    <!-- Page title -->
     <title>
         Shopping Cart
     </title>
@@ -15,16 +15,16 @@
 </head>
 
 <body>
-    <!-- Nagłówek -->
-    @empty($aktywneMenu) @php $aktywneMenu = null @endphp @endempty
-    @include('layouts.header', ['aktywneMenu' => $aktywneMenu])
-    <!-- Zawartość strony -->
+    <!-- Header -->
+    @empty($activeMenu) @php $activeMenu = null @endphp @endempty
+    @include('layouts.header', ['activeMenu' => $activeMenu])
+    <!-- Page content -->
     @yield('content')
-    <!-- Stopka -->
+    <!-- Footer -->
     <footer>
         {{-- @include('layouts.footer') --}}
     </footer>
-    {{-- Skrypty JS --}}
+    {{-- JS scripts --}}
     <script src="{{ asset('js/libs/bootstrap.bundle.min.js') }}"></script>
     @stack('js')
 </body>

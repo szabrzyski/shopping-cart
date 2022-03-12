@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-// Strona główna
-Route::get('/', [IndexController::class, 'index'])->name('glowna');
+// Main page
+Route::get('/', [IndexController::class, 'index'])->name('mainPage');
