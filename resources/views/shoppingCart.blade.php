@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activeMenu' => "index"])
+@extends('layouts.app', ['activeMenu' => "shoppingCart"])
  @push('js')
      {{-- JS scripts --}}
  @endpush

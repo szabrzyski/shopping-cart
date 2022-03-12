@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 // Main page
 Route::get('/', [IndexController::class, 'index'])->name('mainPage');
+
+// Shopping cart
+Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart');
