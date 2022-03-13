@@ -24,4 +24,8 @@ DB_DATABASE=shoppingcart<br>
 DB_USERNAME=root<br>
 DB_PASSWORD=
 
+![Alt text](/screenshots/1.png?raw=true "Optional Title")
 
+![Alt text](/screenshots/2.png?raw=true "Optional Title")
+
+![Alt text](/screenshots/3.png?raw=true "Optional Title")
