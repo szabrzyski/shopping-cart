@@ -1,9 +1,10 @@
-@extends('layouts.app', ['activeMenu' => "index"])
+@extends('layouts.app', ['activeMenu' => "index",'productIdsInShoppingCart' => $productIdsInShoppingCart])
 @push('js')
     {{-- JS scripts --}}
 @endpush
 @section('content')
     <div class="container">
+        @include('layouts.alert')
         <div class="row my-4">
             <div class="col-12">
                 <h4 class="m-0">Product list</h4>
@@ -12,12 +13,13 @@
         <div class="row mb-3">
             <div class="col-12">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped align-middle">
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Price</th>
                                 <th scope="col" class="text-center">Edit</th>
+                                <th scope="col" class="text-center">Remove from catalog</th>
                                 <th scope="col" class="text-center">Add to cart</th>
                             </tr>
                         </thead>
@@ -28,8 +30,18 @@
                                     <td>{{ $product->price }} PLN</td>
                                     <td class="text-center"><button type="button" class="btn btn-link p-0"><i
                                                 class="fas fa-pen-to-square"></i></button></td>
-                                    <td class="text-center"><button type="button" class="btn btn-link p-0"><i
-                                                class="fas fa-cart-plus"></i></button></td>
+                                    <form method="POST" action="{{ route('deleteProductFromCatalog', $product) }}">
+                                        @csrf
+                                        @method('delete')
+                                        <td class="text-center"><button type="submit" class="btn btn-link p-0"><i
+                                                    class="fas fa-trash"></i></button></td>
+                                    </form>
+                                    <form method="POST" action="{{ route('addProductToShoppingCart', $product) }}">
+                                        @csrf
+                                        <td class="text-center"><button type="submit" class="btn btn-link p-0"
+                                                @if (in_array($product->id, $productIdsInShoppingCart)) disabled @endif><i
+                                                    class="fas fa-cart-plus"></i></button></td>
+                                    </form>
                                 </tr>
                             @endforeach
                         </tbody>

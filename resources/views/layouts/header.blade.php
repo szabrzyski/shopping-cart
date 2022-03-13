@@ -14,7 +14,8 @@
                   </li>
                   <li class="nav-item">
                       <a class="nav-link @isset($activeMenu) @if ($activeMenu === 'shoppingCart') active @endif @endisset"
-                          aria-current="page" href="{{ route('shoppingCart') }}">My cart (0)</a>
+                          aria-current="page" href="{{ route('shoppingCart') }}">My cart
+                          ({{ count($productIdsInShoppingCart) }})</a>
                   </li>
                   <li class="nav-item dropdown">
                   </li>
