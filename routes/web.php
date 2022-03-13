@@ -33,3 +33,15 @@ Route::delete('/shoppingCart/delete/{product}', [ShoppingCartController::class, 
 
 // Delete product from catalog
 Route::delete('/product/delete/{product}', [ProductController::class, 'deleteProduct'])->name('deleteProductFromCatalog');
+
+// Add product to catalog (the form)
+Route::get('/product/add', [ProductController::class, 'addProduct'])->name('addProductToCatalog');
+
+// Save product in catalog
+Route::post('/product/add', [ProductController::class, 'saveProduct'])->name('saveProductInCatalog');
+
+// Edit product in catalog (the form)
+Route::get('/product/edit/{product}', [ProductController::class, 'editProduct'])->name('editProductInCatalog');
+
+// Update product in catalog
+Route::put('/product/edit/{product}', [ProductController::class, 'updateProduct'])->name('updateProductInCatalog');

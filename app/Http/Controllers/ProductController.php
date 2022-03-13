@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -22,10 +23,45 @@ class ProductController extends Controller
             ]);
         }
 
-        $productIdsInShoppingCart = session('shoppingCartProducts', []);
+        return view('products.index')->with('results', $products);
 
-        return view('index')->with('results', $products)->with('productIdsInShoppingCart', $productIdsInShoppingCart);
+    }
 
+    // Add product to catalog (the form)
+    public function addProduct(Request $request)
+    {
+
+        return view('products.add');
+    }
+
+    // Save product in catalog
+    public function saveProduct(Request $request)
+    {
+        $walidator = Validator::make($request->all(), [
+            'name' => 'required|string|unique:products,name',
+            'price' => 'required|numeric|min:0.01',
+        ]);
+
+        if ($walidator->fails()) {
+
+            return back()->withErrors($walidator)
+                ->withInput();
+
+        }
+
+        $newProduct = new Product();
+        $newProduct->name = $request->name;
+        $newProduct->price = $request->price;
+
+        if ($newProduct->save()) {
+            return redirect(route('mainPage'))->with([
+                'success' => 'Product has been added to the catalog',
+            ]);
+        } else {
+            return back()->withInput()->with([
+                'error' => 'An error occurred while adding product to the catalog',
+            ]);
+        }
     }
 
     /**
@@ -57,6 +93,52 @@ class ProductController extends Controller
             ]);
         }
 
+    }
+
+    /**
+     * Edit product in catalog (the form)
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Product $product
+     */
+    public function editProduct(Request $request, Product $product)
+    {
+        return view('products.edit')->with('product', $product);
+
+    }
+
+    /**
+     * Update product in catalog
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Product $product
+     */
+    public function updateProduct(Request $request, Product $product)
+    {
+        $walidator = Validator::make($request->all(), [
+            'name' => 'required|string|unique:products,name,' . $product->id,
+            'price' => 'required|numeric|min:0.01',
+        ]);
+
+        if ($walidator->fails()) {
+
+            return back()->withErrors($walidator)
+                ->withInput();
+
+        }
+
+        $product->name = $request->name;
+        $product->price = $request->price;
+
+        if ($product->save()) {
+            return redirect(route('mainPage'))->with([
+                'success' => 'Product has been updated',
+            ]);
+        } else {
+            return back()->withInput()->with([
+                'error' => 'An error occurred while updating product',
+            ]);
+        }
     }
 
 }

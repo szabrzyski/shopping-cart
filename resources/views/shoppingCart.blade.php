@@ -1,7 +1,4 @@
-@extends('layouts.app', ['activeMenu' => "shoppingCart",'productIdsInShoppingCart' => $productIdsInShoppingCart])
-@push('js')
-    {{-- JS scripts --}}
-@endpush
+@extends('layouts.app', ['activeMenu' => "shoppingCart"])
 @section('content')
     <div class="container">
         @include('layouts.alert')
@@ -41,7 +38,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <p class="mt-2">Amount to pay: {{ $productsInShoppingCart->sum('price') }} PLN</p>
+                    <p class="mt-2">Amount to pay:
+                        {{ number_format($productsInShoppingCart->sum('price'), 2, '.', '') }} PLN</p>
                 @endif
 
             </div>

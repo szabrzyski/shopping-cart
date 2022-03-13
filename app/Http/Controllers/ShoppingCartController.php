@@ -12,7 +12,7 @@ class ShoppingCartController extends Controller
     {
         $productIdsInShoppingCart = session('shoppingCartProducts', []);
         $productsInShoppingCart = Product::whereIn('id', $productIdsInShoppingCart)->get();
-        return view('shoppingCart')->with('productIdsInShoppingCart', $productIdsInShoppingCart)->with('productsInShoppingCart', $productsInShoppingCart);
+        return view('shoppingCart')->with('productsInShoppingCart', $productsInShoppingCart);
     }
 
     /**

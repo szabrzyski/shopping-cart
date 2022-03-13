@@ -1,13 +1,13 @@
-@extends('layouts.app', ['activeMenu' => "index",'productIdsInShoppingCart' => $productIdsInShoppingCart])
-@push('js')
-    {{-- JS scripts --}}
-@endpush
+@extends('layouts.app', ['activeMenu' => "index"])
 @section('content')
     <div class="container">
         @include('layouts.alert')
-        <div class="row my-4">
-            <div class="col-12">
+        <div class="row my-4 d-flex align-items-center">
+            <div class="col-12 col-sm-6 mb-4 mb-sm-0">
                 <h4 class="m-0">Product list</h4>
+            </div>
+            <div class="col-12 col-sm-6 text-sm-end text-start">
+                <a class="btn btn-primary" href="{{ route('addProductToCatalog') }}" role="button">Add new product</a>
             </div>
         </div>
         <div class="row mb-3">
@@ -28,8 +28,11 @@
                                 <tr>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }} PLN</td>
-                                    <td class="text-center"><button type="button" class="btn btn-link p-0"><i
-                                                class="fas fa-pen-to-square"></i></button></td>
+                                    <form method="GET" action="{{ route('editProductInCatalog', $product) }}">
+                                        @csrf
+                                        <td class="text-center"><button type="submit" class="btn btn-link p-0"><i
+                                                    class="fas fa-pen-to-square"></i></button></td>
+                                    </form>
                                     <form method="POST" action="{{ route('deleteProductFromCatalog', $product) }}">
                                         @csrf
                                         @method('delete')
